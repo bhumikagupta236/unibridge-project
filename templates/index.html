@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniBridge - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen antialiased">
+
+    <!-- Header Section -->
+    <header class="p-6 max-w-7xl mx-auto w-full">
+        <nav class="flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+                <div class="bg-indigo-600 p-2 rounded-lg">
+                    <span class="font-bold text-xl">UB</span>
+                </div>
+                <h1 class="text-2xl font-bold">UniBridge</h1>
+            </div>
+            
+            <!-- 
+              MENTOR NOTE: Accessibility Update!
+              - We've changed this from just an <i> to a <button>.
+              - We added `aria-label` for screen readers.
+              - We added `focus:ring` for keyboard users.
+            -->
+            <button 
+              aria-label="Settings" 
+              class="p-2 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50"
+            >
+                <i data-lucide="settings" class="w-6 h-6"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="max-w-7xl mx-auto p-6 mt-10">
+        
+        <!-- Hero Text -->
+        <div class="text-center max-w-2xl mx-auto">
+            <h2 class="text-4xl font-bold md:text-5xl">
+                Connect. Learn. Communicate.
+            </h2>
+            <p class="text-lg text-gray-300 mt-4">
+                UniBridge is a platform designed to break down communication barriers. Learn sign language, convert speech to text, work with Braille, and access a universal dictionary—all in one accessible place.
+            </p>
+        </div>
+
+        <!-- 
+          MENTOR NOTE: Accessibility Update!
+          - We've added `focus:outline-none` and `focus:ring-4` to every card.
+          - Now, when you press 'Tab', you'll see a clear blue ring.
+        -->
+        
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+            
+            <!-- Card 1: Learn Sign Language -->
+            <a href="/learn-sign" class="bg-gray-800 p-8 rounded-2xl flex flex-col items-center justify-center text-center transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-indigo-500">
+                <i data-lucide="sign-language" class="w-16 h-16 text-indigo-400 mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">Learn Sign Language</h3>
+                <p class="text-gray-400">Step-by-step lessons for ASL.</p>
+            </a>
+
+            <!-- Card 2: Learn Braille -->
+            <a href="/learn-braille" class="bg-gray-800 p-8 rounded-2xl flex flex-col items-center justify-center text-center transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-indigo-500">
+                <i data-lucide="braille" class="w-16 h-16 text-indigo-400 mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">Learn Braille</h3>
+                <p class="text-gray-400">Understand the basics of Braille.</p>
+            </a>
+            
+            <!-- Card 3: Dictionary -->
+            <a href="/dictionary" class="bg-gray-800 p-8 rounded-2xl flex flex-col items-center justify-center text-center transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-indigo-500">
+                <i data-lucide="book-open" class="w-16 h-16 text-indigo-400 mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">Dictionary</h3>
+                <p class="text-gray-400">Universal translator for all formats.</p>
+            </a>
+
+            <!-- Card 4: Speech & Text -->
+            <a href="/speech" class="bg-gray-800 p-8 rounded-2xl flex flex-col items-center justify-center text-center transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-indigo-500">
+                <i data-lucide="mic" class="w-16 h-16 text-indigo-400 mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">Speech & Text</h3>
+                <p class="text-gray-400">Convert speech to text and back.</p>
+            </a>
+            
+            <!-- Card 5: Braille ↔ Text -->
+            <a href="/braille" class="bg-gray-800 p-8 rounded-2xl flex flex-col items-center justify-center text-center transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-indigo-500">
+                <i data-lucide="binary" class="w-16 h-16 text-indigo-400 mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">Braille ↔ Text</h3>
+                <p class="text-gray-400">Simple Braille conversion tool.</p>
+            </a>
+
+            <!-- Card 6: Sign → Text -->
+            <a href="/sign-to-text" class="bg-gray-800 p-8 rounded-2xl flex flex-col items-center justify-center text-center transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-indigo-500">
+                <i data-lucide="webcam" class="w-16 h-16 text-indigo-400 mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">Sign → Text</h3>
+                <p class="text-gray-400">Upload a sign for recognition.</p>
+            </a>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center p-10 mt-16 text-gray-500 border-t border-gray-800">
+        © 2025 UniBridge. Making communication accessible for everyone.
+    </footer>
+    
+    <!-- This script loads the icons -->
+    <script>
+      lucide.createIcons();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "A",
+    "image": "https://placehold.co/400x400/374151/FFFFFF?text=Sign+for+A",
+    "description": "A closed fist with the thumb on the side."
+  },
+  {
+    "name": "B",
+    "image": "https://placehold.co/400x400/374151/FFFFFF?text=Sign+for+B",
+    "description": "A flat hand with the thumb folded across the palm."
+  },
+  {
+    "name": "C",
+    "image": "https://placehold.co/400x400/374151/FFFFFF?text=Sign+for+C",
+    "description": "A curved hand, forming the shape of a 'C'."
+  }
+]

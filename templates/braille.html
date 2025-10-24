@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Braille ↔ Text Translator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+      /* Custom style for Braille font */
+      .braille-font {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 1.5rem; /* Make braille characters larger */
+        letter-spacing: 2px;
+      }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen antialiased">
+
+    <!-- Header with Back Button -->
+    <header class="p-6 max-w-5xl mx-auto w-full">
+        <nav class="flex items-center">
+            <a href="/" 
+               class="flex items-center text-gray-400 hover:text-white transition-colors rounded-full p-2 focus:outline-none focus:ring-4 focus:ring-indigo-500"
+               aria-label="Back to home">
+                <i data-lucide="arrow-left" class="w-6 h-6"></i>
+                <span class="ml-2 font-semibold">Home</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto p-6">
+        <h1 class="text-4xl font-bold text-center">Braille ↔ Text Translator</h1>
+        <p class="text-lg text-gray-300 mt-2 text-center">
+            Translate between English text and Grade 1 Braille.
+        </p>
+
+        <div class="mt-12 grid md:grid-cols-2 gap-8">
+
+            <!-- Card 1: Text to Braille -->
+            <form method="POST" class="bg-gray-800 p-6 rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-semibold mb-4">Text to Braille</h2>
+                <div class="mb-4">
+                    <label for="text_input" class="block text-sm font-medium text-gray-300 mb-2">Enter Text:</label>
+                    <textarea id="text_input" name="text" rows="5" 
+                              class="w-full p-3 bg-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-indigo-500"
+                              aria-label="Enter text to translate to Braille"
+                              placeholder="Hello World"></textarea>
+                </div>
+                <button type="submit" name="text_to_braille"
+                        class="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500">
+                    Translate to Braille
+                </button>
+            </form>
+
+            <!-- Card 2: Braille to Text -->
+            <form method="POST" class="bg-gray-800 p-6 rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-semibold mb-4">Braille to Text</h2>
+                <div class="mb-4">
+                    <label for="braille_input" class="block text-sm font-medium text-gray-300 mb-2">Enter Braille (use spaces):</label>
+                    <textarea id="braille_input" name="braille" rows="5" 
+                              class="w-full p-3 bg-gray-700 rounded-lg text-white placeholder-gray-400 braille-font focus:outline-none focus:ring-4 focus:ring-indigo-500"
+                              aria-label="Enter Braille characters to translate to text"
+                              placeholder="⠓⠑⠇⠇⠕ ⠺⠕⠗⠇⠙"></textarea>
+                </div>
+                <button type="submit" name="braille_to_text"
+                        class="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500">
+                    Translate to Text
+                </button>
+            </form>
+        </div>
+
+        <!-- Result Display -->
+        <!-- We use the `original_text` variable to pre-fill the form, which is more user-friendly -->
+        <div class="mt-8 bg-gray-800 p-6 rounded-2xl shadow-lg">
+            <h2 class="text-2xl font-semibold mb-4">Result</h2>
+            <div class="bg-gray-700 p-4 rounded-lg min-h-[100px]">
+                <p class="text-lg text-white braille-font">{{ translation or 'Your translation will appear here.' }}</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lucide Icons initialization -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

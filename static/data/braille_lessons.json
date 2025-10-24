@@ -1,0 +1,17 @@
+[
+  {
+    "name": "A",
+    "braille": "⠁",
+    "description": "Dot 1"
+  },
+  {
+    "name": "B",
+    "braille": "⠃",
+    "description": "Dots 1 and 2"
+  },
+  {
+    "name": "C",
+    "braille": "⠉",
+    "description": "Dots 1 and 4"
+  }
+]

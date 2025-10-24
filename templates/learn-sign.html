@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Sign Language</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen antialiased">
+
+    <!-- Header with Back Button -->
+    <header class="p-6 max-w-5xl mx-auto w-full">
+        <nav class="flex items-center">
+            <a href="/" 
+               class="flex items-center text-gray-400 hover:text-white transition-colors rounded-full p-2 focus:outline-none focus:ring-4 focus:ring-indigo-500"
+               aria-label="Back to home">
+                <i data-lucide="arrow-left" class="w-6 h-6"></i>
+                <span class="ml-2 font-semibold">Home</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-xl mx-auto p-6">
+        <h1 class="text-4xl font-bold text-center">Learn Sign Language</h1>
+        <p class="text-lg text-gray-300 mt-2 text-center">
+            Use the "Next" and "Previous" buttons to study the alphabet.
+        </p>
+
+        <!-- Lesson Display Card -->
+        <div class="mt-12 bg-gray-800 p-6 rounded-2xl shadow-lg">
+            
+            <!-- Lesson Title -->
+            <h2 id="lesson-title" class="text-5xl font-bold text-center text-indigo-400">A</h2>
+
+            <!-- Image/GIF Display -->
+            <div class="mt-6 aspect-square bg-gray-700 rounded-lg flex items-center justify-center">
+                <img id="lesson-image" src="https://placehold.co/400x400/4B5563/FFFFFF?text=Sign+for+A" 
+                     alt="A diagram showing the hand sign for the letter A" 
+                     class="max-w-full max-h-full object-contain rounded-lg">
+            </div>
+
+            <!-- Description -->
+            <p id="lesson-description" class="text-gray-300 text-center mt-4 text-lg">
+                This is the sign for the letter 'A'. It's a closed fist with the thumb on the side.
+            </p>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="mt-8 flex justify-between">
+            <button id="prev-button"
+                    aria-label="Previous lesson"
+                    class="flex items-center bg-gray-700 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-600 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed">
+                <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i>
+                Previous
+            </button>
+            <button id="next-button"
+                    aria-label="Next lesson"
+                    class="flex items-center bg-indigo-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-4 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed">
+                Next
+                <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+            </button>
+        </div>
+    </main>
+
+    <!-- Lucide Icons initialization & JavaScript Logic -->
+    <script>
+        lucide.createIcons();
+
+        // --- MENTOR NOTE (JavaScript Logic) ---
+        // This is the client-side "brain" for this page.
+        // It fetches our "database" (the JSON file) and
+        // controls what the user sees.
+        
+        let lessons = [];
+        let currentLessonIndex = 0;
+
+        // Get references to our HTML elements
+        const titleEl = document.getElementById('lesson-title');
+        const imageEl = document.getElementById('lesson-image');
+        const descriptionEl = document.getElementById('lesson-description');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+
+        // Function to update the page content
+        function showLesson(index) {
+            if (index < 0 || index >= lessons.length) {
+                return; // Safety check
+            }
+            
+            const lesson = lessons[index];
+            titleEl.textContent = lesson.name;
+            imageEl.src = lesson.image_url;
+            imageEl.alt = lesson.alt_text; // Set the alt text
+            descriptionEl.textContent = lesson.description;
+            
+            currentLessonIndex = index;
+            
+            // Update button states
+            prevButton.disabled = (index === 0);
+            nextButton.disabled = (index === lessons.length - 1);
+        }
+
+        // Navigation button event listeners
+        prevButton.addEventListener('click', () => {
+            if (currentLessonIndex > 0) {
+                showLesson(currentLessonIndex - 1);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentLessonIndex < lessons.length - 1) {
+                showLesson(currentLessonIndex + 1);
+            }
+        });
+
+        // This function runs when the page first loads
+        async function loadLessons() {
+            try {
+                // Fetch our "database"
+                // We use '/static/data/...' because Flask serves the 'static' folder
+                const response = await fetch('/static/data/sign_lessons.json');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                lessons = await response.json();
+                
+                // Show the first lesson
+                if (lessons.length > 0) {
+                    showLesson(0);
+                } else {
+                    titleEl.textContent = "No lessons found.";
+                    descriptionEl.textContent = "Please check if the 'sign_lessons.json' file exists in '/static/data/'.";
+                }
+            } catch (error) {
+                console.error('Error fetching lessons:', error);
+                titleEl.textContent = "Error";
+                descriptionEl.textContent = "Could not load lessons. See console for details.";
+            }
+        }
+
+        // Run our load function when the page is ready
+        document.addEventListener('DOMContentLoaded', loadLessons);
+
+    </script>
+</body>
+</html>
